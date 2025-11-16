@@ -1,0 +1,367 @@
+// ─────────────────────────────────────────────
+// Palette inspirée Boehringer Ingelheim
+// ─────────────────────────────────────────────
+
+$bi-dark-green: #08312a;
+$bi-accent-green: #00e47c;
+$bi-neutral: #e5e3de;
+$bi-surface: #fffdf8;
+$bi-overlay: rgba(0, 0, 0, 0.55);
+$bi-text: #111111;
+
+// ─────────────────────────────────────────────
+// Reset simple
+// ─────────────────────────────────────────────
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Boehringer Forward", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: $bi-text;
+}
+
+// ─────────────────────────────────────────────
+// Fond & overlay
+// ─────────────────────────────────────────────
+
+.it-body {
+  background: $bi-overlay;
+}
+
+.it-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.5),
+    rgba(8, 49, 42, 0.85)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+// ─────────────────────────────────────────────
+// Fenêtre principale
+// ─────────────────────────────────────────────
+
+.it-popup {
+  max-width: 640px;
+  width: 100%;
+  background: $bi-surface;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition:
+    border-top-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  &--twist {
+    border-top: 5px solid $bi-accent-green;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  &--shake {
+    animation: popup-shake 0.45s ease;
+  }
+}
+
+// ─────────────────────────────────────────────
+// Header – mode “alerte sécurité officielle”
+// ─────────────────────────────────────────────
+
+.it-popup__header {
+  background: $bi-dark-green;
+  color: #ffffff;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.it-popup__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.it-popup__header-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.it-popup__header-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.it-popup__header-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+// ─────────────────────────────────────────────
+// Contenus / panneaux
+// ─────────────────────────────────────────────
+
+.it-popup__content {
+  padding: 20px 22px 22px;
+  background: #ffffff;
+
+  @media (max-width: 520px) {
+    padding: 16px 14px 18px;
+  }
+}
+
+.it-popup__content--main {
+  background: #ffffff;
+}
+
+.it-popup__content--twist {
+  background: $bi-neutral;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 18px;
+    right: 18px;
+    height: 3px;
+    border-radius: 999px;
+    background: $bi-accent-green;
+    opacity: 0.8;
+  }
+}
+
+// Texte standard
+.it-popup__text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: $bi-text;
+  margin-bottom: 10px;
+
+  strong {
+    font-weight: 600;
+    color: $bi-dark-green;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  &--small {
+    font-size: 12px;
+    color: #555;
+  }
+
+  &--center {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+// Liste des actions / obligations
+.it-popup__list {
+  margin: 10px 0 16px;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #333;
+  list-style: disc;
+
+  li {
+    margin-bottom: 7px;
+  }
+}
+
+.it-popup__list--twist {
+  li {
+    margin-bottom: 9px;
+  }
+}
+
+// ─────────────────────────────────────────────
+// Boutons
+// ─────────────────────────────────────────────
+
+.it-popup__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+
+  &--end {
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 420px) {
+    flex-direction: column-reverse;
+    align-items: stretch;
+
+    .bi-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+.bi-btn {
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.12s ease,
+    color 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.05s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &--outline {
+    background-color: #ffffff;
+    color: $bi-dark-green;
+    border-color: rgba($bi-dark-green, 0.8);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.03);
+      box-shadow: 0 0 0 1px rgba($bi-dark-green, 0.15);
+    }
+  }
+
+  &--primary {
+    background-color: $bi-accent-green;
+    color: $bi-dark-green;
+    border-color: $bi-accent-green;
+    font-weight: 600;
+
+    &:hover {
+      background-color: lighten($bi-accent-green, 4%);
+      box-shadow: 0 0 0 1px rgba($bi-accent-green, 0.25);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// Écran final (croissant)
+// ─────────────────────────────────────────────
+
+.it-popup__final {
+  text-align: center;
+  padding: 30px 10px 10px;
+}
+
+.it-popup__final-img {
+  width: 210px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.it-popup__final-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: $bi-dark-green;
+}
+
+// ─────────────────────────────────────────────
+// Confettis
+// ─────────────────────────────────────────────
+
+#confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 6px;
+  height: 14px;
+  border-radius: 1px;
+  opacity: 0;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, -100%, 0) rotateZ(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(20px, 50vh, 0) rotateZ(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-20px, 110vh, 0) rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+// ─────────────────────────────────────────────
+// Animation "shake" pour le bouton IT
+// ─────────────────────────────────────────────
+
+@keyframes popup-shake {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(-5px); }
+  30%  { transform: translateX(5px); }
+  45%  { transform: translateX(-4px); }
+  60%  { transform: translateX(4px); }
+  75%  { transform: translateX(-2px); }
+  90%  { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+// ─────────────────────────────────────────────
+// Utilitaire d’affichage
+// ─────────────────────────────────────────────
+
+.is-hidden {
+  display: none;
+}

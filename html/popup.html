@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Boehringer Ingelheim – Alerte sécurité</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="64x64" href="../img/faviconBI.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/faviconBI.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/faviconBI.png">
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="it-body">
+
+<div class="it-overlay">
+  <div
+    class="it-popup"
+    id="itPopup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="itPopupTitle"
+    aria-describedby="itPopupDesc"
+    tabindex="-1"
+  >
+    <div class="it-popup__header">
+      <div class="it-popup__header-left">
+        <span class="it-popup__header-title" id="itPopupTitle">
+          Alerte sécurité – Poste non verrouillé
+        </span>
+        <span class="it-popup__header-sub" id="itPopupDesc">
+          Boehringer Ingelheim · Sécurité des systèmes d’information
+        </span>
+      </div>
+      <span class="it-popup__header-status">Niveau&nbsp;: Élevé</span>
+    </div>
+
+    <!-- Contenu 1 : ton ultra sérieux -->
+    <div class="it-popup__content it-popup__content--main" id="popupMain">
+      <p class="it-popup__text">
+        Ce message a été généré automatiquement suite à la détection d’un
+        <strong>poste de travail non verrouillé</strong> dans une zone partagée
+        Boehringer Ingelheim.
+      </p>
+      <p class="it-popup__text">
+        Conformément aux règles internes de <strong>sécurité des systèmes d’information</strong>,
+        tout départ de poste sans verrouillage constitue un <strong>risque de compromission
+        de données confidentielles</strong> (données projets, données patients, informations internes).
+      </p>
+      <p class="it-popup__text">
+        Cet événement peut être considéré comme une <strong>entrave aux bonnes pratiques
+        de sécurité de l’entreprise</strong> et est enregistré à des fins de sensibilisation
+        et de traçabilité.
+      </p>
+
+      <ul class="it-popup__list">
+        <li>Vérifier immédiatement que votre session n’a pas été utilisée à votre insu.</li>
+        <li>Appliquer systématiquement le verrouillage de session (<code>Win + L</code>) à chaque absence.</li>
+        <li>Relire les consignes de sécurité numérique disponibles sur l’intranet.</li>
+      </ul>
+
+      <p class="it-popup__text it-popup__text--small">
+        En cliquant sur un des boutons ci-dessous, vous reconnaissez avoir pris connaissance
+        de cette alerte de sécurité.
+      </p>
+
+      <div class="it-popup__actions">
+        <button class="bi-btn bi-btn--outline" type="button" id="contactItBtn">
+          Contacter le support IT
+        </button>
+        <button class="bi-btn bi-btn--primary" type="button" id="feedbackBtn">
+          Merci pour le feed-back
+        </button>
+      </div>
+    </div>
+
+    <!-- Contenu 2 : page "Merci pour le feed-back" + état final croissant -->
+    <div class="it-popup__content it-popup__content--twist is-hidden" id="popupTwist">
+
+      <!-- ÉTAT 2.1 : explications + obligations + bouton -->
+      <div id="twistDetails">
+        <p class="it-popup__text">
+          <strong>Merci pour le feed-back.</strong><br>
+          Réponse enregistrée.
+        </p>
+
+        <p class="it-popup__text">
+          Toutefois, nos systèmes de détection avancée indiquent que cette formule est
+          régulièrement utilisée pour clôturer les rappels de sécurité <em>sans action concrète</em>.
+        </p>
+
+        <p class="it-popup__text">
+          Pour garantir la bonne application des règles et restaurer la confiance de l’open space,
+          une mesure corrective immédiate est requise&nbsp;:
+        </p>
+
+        <ul class="it-popup__list it-popup__list--twist">
+          <li>
+            <strong>Obligation de petit-déjeuner :</strong> apporter
+            <strong>viennoiseries</strong> (croissants, pains au chocolat, etc.)
+            pour l’équipe présente lors de l’incident.
+          </li>
+          <li>
+            <strong>Option d’atténuation :</strong> proposer un <strong>tour de cafés</strong>
+            pour les témoins directs du poste non verrouillé.
+          </li>
+          <li>
+            <strong>Mesure préventive :</strong> adoption définitive du réflexe
+            <code>Win + L</code> à chaque départ, même “juste pour 30 secondes”.
+          </li>
+        </ul>
+
+        <p class="it-popup__text it-popup__text--small">
+          Aucune remontée officielle ne sera effectuée, à condition que la
+          <strong>compensation viennoiseries</strong> soit appliquée dans un délai raisonnable.
+        </p>
+
+        <div class="it-popup__actions it-popup__actions--end">
+          <button class="bi-btn bi-btn--primary" type="button" id="breakfastBtn">
+            J’accepte et je ramène le petit-déjeuner
+          </button>
+        </div>
+      </div>
+
+      <!-- ÉTAT 2.2 : écran final simplifié, affiché après clic sur "J’accepte..." -->
+      <div class="it-popup__final is-hidden" id="twistFinal">
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExemE0a2plamQ4NDZsMTBzbmV5YzIzaDQ3bGNvYzd1dHJ0N21pbnMwdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/suqg0jRPpDMze/giphy.gif" alt="Croissant" class="it-popup__final-img">
+
+        <p class="it-popup__final-text">
+          <strong>Engagement validé.</strong><br>
+          L’open space attend désormais <strong>ton petit-déjeuner.</strong>🥐
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Conteneur confettis -->
+<div id="confetti-container"></div>
+
+<script src="../js/script.js"></script>
+
+</body>
+</html>
